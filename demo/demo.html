@@ -4,21 +4,20 @@
     <meta charset='utf-8'>
     <link href="demo.css" rel='stylesheet' type='text/css' />
   </head>
-
   <body>
 
-   <button data-pl-trigger="dropdown">open dropdown</button>
+   <button data-pl-trigger="unique-identifier">open dropdown</button>
 
-   <div class="dropdown">
-    dropdown
+   <div class="dropdown" data-pl-id="unique-identifier">
+    Hello I'm a dropdown!
    </div>
 
    <button>open nothing</button>
 
 
-   <button data-pl-trigger="dropdown">open dropdown 2</button>
+   <button data-pl-trigger="second-one">open dropdown 2</button>
 
-   <div class="dropdown">
+   <div class="dropdown" data-pl-id="second-one">
     dropdown 2
    </div>
 
