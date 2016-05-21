@@ -9,4 +9,10 @@ gulp.task('compress', function() {
   .pipe(uglify())
   .pipe(rename('plunge.min.js'))
   .pipe(gulp.dest('dist'));
-})
+});
+
+gulp.task('watch', function() {
+  gulp.watch('plunge.js', ['compress']);
+});
+
+gulp.task('default', ['watch']);
