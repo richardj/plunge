@@ -1,4 +1,8 @@
-(function() {
+/*
+ * Plunge.js
+ */
+
+;(function() {
   'use strict';
 
   var assignHandlers = function() {
@@ -12,6 +16,11 @@
     while ((el = el.parentElement) && !el.classList.contains(cls));
     return el;
   };
+
+  var findDropElement = function(el) {
+    var element = document.querySelectorAll('[data-pl-id="' + el + '"]');
+    element[0].classList.add('pl-active');
+  };
   
   var dropdown = {
     open: function(event) {
@@ -20,12 +29,17 @@
       var dropElement = event.target.nextElementSibling;
 
       if (event.target.dataset.plTrigger && !event.target.classList.contains('pl-trigger-active')) {
+        // close all the dropdowns that might be open still
         dropdown.closeAll();
 
+        // add the classes to the html element
         root.classList.add('pl-active');
+        // add an active class to the trigger
         event.target.classList.add('pl-trigger-active');
-        dropElement.classList.add('pl-active');
-        dropdown.position(dropElement);
+        // find the element that needs to plunge based on the indentifier in the data-pl-trigger attribute
+        findDropElement(event.target.dataset.plTrigger);
+
+        //dropdown.position(dropElement);
       }
       else if (root.classList.contains('pl-active') && clicked === null) {
         dropdown.closeAll();
