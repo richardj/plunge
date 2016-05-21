@@ -1,0 +1,19 @@
+html,
+body {
+  height: 100%;
+}
+
+.dropdown {
+  width: 150px;
+  height: 100px;
+  border-radius: 3px;
+  padding: 20px;
+  border: 1px solid grey;
+  background: #fff;
+  display: none;
+  position: absolute;
+}
+
+.dropdown.sw-active {
+  display: block;
+}
