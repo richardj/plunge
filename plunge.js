@@ -17,15 +17,15 @@
       var clicked = findAncestor(event.target, 'dropdown');
       var dropElement = event.target.nextElementSibling;
 
-      if (event.target.dataset.swTrigger && !event.target.classList.contains('sw-trigger-active')) {
+      if (event.target.dataset.swTrigger && !event.target.classList.contains('pl-trigger-active')) {
         dropdown.closeAll();
 
-        root.classList.add('sw-active');
-        event.target.classList.add('sw-trigger-active');
-        dropElement.classList.add('sw-active');
+        root.classList.add('pl-active');
+        event.target.classList.add('pl-trigger-active');
+        dropElement.classList.add('pl-active');
         dropdown.position(dropElement);
       }
-      else if (root.classList.contains('sw-active') && clicked === null) {
+      else if (root.classList.contains('pl-active') && clicked === null) {
         dropdown.closeAll();
       }
       else {
@@ -57,17 +57,17 @@
     },
 
     hide: function(element) {
-      element.classList.remove('sw-active');
-      element.classList.remove('sw-trigger-active');
+      element.classList.remove('pl-active');
+      element.classList.remove('pl-trigger-active');
     },
 
     closeAll: function() {
-      var elements = document.querySelectorAll('.dropdown, .sw-trigger-active');
+      var elements = document.querySelectorAll('.dropdown, .pl-trigger-active');
     
       for (var i = 0; i < elements.length; i++) {
         dropdown.hide(elements[i]);
       }
-      document.documentElement.classList.remove('sw-active');
+      document.documentElement.classList.remove('pl-active');
     }
   };
   
