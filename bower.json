@@ -1,0 +1,23 @@
+{
+  "name": "Plunge",
+  "main": "plunge.js",
+  "homepage": "https://github.com/richardj/plunge",
+  "authors": [
+    "Richard Japenga <treurmars@gmail.com>"
+  ],
+  "description": "Simple script for dropdowns and modals",
+  "keywords": [
+    "vanilla",
+    "javascript",
+    "dropdown",
+    "modal"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
