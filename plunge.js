@@ -63,7 +63,6 @@
 
     closeAll: function() {
       var elements = document.querySelectorAll('.dropdown, .sw-trigger-active');
-      console.log(elements);
     
       for (var i = 0; i < elements.length; i++) {
         dropdown.hide(elements[i]);
