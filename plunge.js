@@ -1,4 +1,6 @@
 (function() {
+  'use strict';
+
   var assignHandlers = function() {
     document.querySelector('body').addEventListener('click', dropdown.open, false);
   };
@@ -17,7 +19,7 @@
       var clicked = findAncestor(event.target, 'dropdown');
       var dropElement = event.target.nextElementSibling;
 
-      if (event.target.dataset.swTrigger && !event.target.classList.contains('pl-trigger-active')) {
+      if (event.target.dataset.plTrigger && !event.target.classList.contains('pl-trigger-active')) {
         dropdown.closeAll();
 
         root.classList.add('pl-active');
