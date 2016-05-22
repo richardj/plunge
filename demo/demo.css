@@ -1,6 +1,31 @@
 html,
 body {
+  width: 100%;
   height: 100%;
+}
+
+/* demo layout */
+
+button {
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  position: absolute;
+  font-size: 1.3rem;
+  text-shadow: -1px 1px 1px #999;
+  background: lightblue;
+}
+
+/* random positions of the buttons */
+
+button:nth-child(1) {
+  top: 10%;
+  right: 15%; 
+}
+
+button:nth-child(3) {
+  bottom: 10%;
+  left: 9%;
 }
 
 .dropdown {
