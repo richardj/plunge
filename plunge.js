@@ -27,7 +27,6 @@
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
       var dropElement = event.target.nextElementSibling;
-      console.log(event.target);
 
       if (event.target.dataset.plTrigger && !event.target.classList.contains('pl-trigger-active')) {
         event.stopPropagation();
