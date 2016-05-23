@@ -27,8 +27,10 @@
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
       var dropElement = event.target.nextElementSibling;
+      console.log(event.target);
 
       if (event.target.dataset.plTrigger && !event.target.classList.contains('pl-trigger-active')) {
+        event.stopPropagation();
         // close all the dropdowns that might be open still
         dropdown.closeAll();
 
@@ -38,8 +40,10 @@
         event.target.classList.add('pl-trigger-active');
         // find the element that needs to plunge based on the indentifier in the data-pl-trigger attribute
         findDropElement(event.target.dataset.plTrigger);
-
-        //dropdown.position(dropElement);
+        // check if the trigger has a position reference
+        if (event.target.dataset.plPosition) {
+          dropdown.position(dropElement);
+        }
       }
       else if (root.classList.contains('pl-active') && clicked === null) {
         dropdown.closeAll();
@@ -49,11 +53,42 @@
       }
     },
     position: function(el) {
-      var posLeft = event.target.offsetLeft;
-      var posTop = event.target.offsetTop + event.target.clientHeight + 10;
+      var windowHeight = window.innerHeight;
+      var windowWidth = window.innerWidth;
 
-      el.style.top = posTop + "px";
-      el.style.left = posLeft + "px";
+      var trigger = event.target.getBoundingClientRect();
+      var dropdown = el.getBoundingClientRect();
+
+      var triggerLeft = event.target.offsetLeft;
+      var triggerTop = event.target.offsetTop + event.target.clientHeight + 10;
+
+      console.log(trigger, 'dropdown');
+      console.log(dropdown, 'dropdown');
+
+      /* 
+      console.log(windowHeight, 'window height');
+      console.log(windowWidth, 'window width');
+      console.log(dropdownHeight, 'dropdown height');
+      console.log(dropdownWidth, 'dropdown height');
+      console.log(triggerLeft, 'position left');
+      console.log(triggerTop, 'position top');
+      */
+      // determine where in the screen the button is so we know if we should set it to left / right, top / bottom
+      var posX = (triggerLeft < (windowWidth / 2)) ? 'left' : 'right';
+      var posY = (triggerTop < (windowHeight / 2)) ? 'top' : 'bottom';
+
+      console.log(posX, 'position X');
+      console.log(posY, 'position Y');
+
+      if (posX == 'left') {
+        el.style.left = triggerLeft + 'px';
+      }
+      else {
+        el.style.right = triggerLeft + 'px';
+      }
+
+      el.style.posX = triggerLeft + "px";
+      el.style.posY = triggerTop + "px";
     },
     content: function(event) {
       var posLeft = event.target.offsetLeft;
