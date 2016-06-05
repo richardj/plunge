@@ -5,46 +5,30 @@
     <link href="demo.css" rel='stylesheet' type='text/css' />
   </head>
   <body>
+    <div class="layout-wrapper">
+      <h1>Plunge.js</h1>
+      <button data-pl-trigger="unique-identifier" data-pl-position="auto">open dropdown</button>
 
-   <button data-pl-trigger="unique-identifier" data-pl-position="auto">open dropdown</button>
+      <div class="dropdown" data-pl-id="unique-identifier">
+        Hello I'm a dropdown!
+      </div>
 
-   <div class="dropdown" data-pl-id="unique-identifier">
-    Hello I'm a dropdown!
-   </div>
+      <button>open nothing</button>
 
-   <button>open nothing</button>
+      <button data-pl-trigger="second-one" data-pl-position="auto">open dropdown 2</button>
+
+      <div class="dropdown" data-pl-id="second-one">
+        dropdown 2
+      </div>
 
 
-   <button data-pl-trigger="second-one">open dropdown 2</button>
+      <button data-pl-trigger="third-dropdown" data-pl-position="auto">open dropdown 3</button>
 
-   <div class="dropdown" data-pl-id="second-one">
-    dropdown 2
-   </div>
+      <div class="dropdown" data-pl-id="third-dropdown">
+        dropdown 3
+      </div>
+    </div>
 
-  <svg data-pl-trigger="svg-down" width="18px" height="4px" viewBox="0 0 18 4" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-          <g id="Agile-board-pop-up---1440" sketch:type="MSArtboardGroup" transform="translate(-1411.000000, -769.000000)" fill="#18254A">
-              <g id="pop-up" sketch:type="MSLayerGroup" transform="translate(1001.000000, 128.000000)">
-                  <g id="User-Stories-/-detail-small" transform="translate(-125.000000, -5.000000)" sketch:type="MSShapeGroup">
-                      <g id="tasks" transform="translate(93.000000, 372.000000)">
-                          <g id="task-copy-6" transform="translate(1.000000, 254.000000)">
-                              <g id="options" transform="translate(441.000000, 20.000000)">
-                                  <circle id="Oval-287" cx="2" cy="2" r="2"></circle>
-                                  <circle id="Oval-287-Copy" cx="9" cy="2" r="2"></circle>
-                                  <circle id="Oval-287-Copy-2" cx="16" cy="2" r="2"></circle>
-                              </g>
-                          </g>
-                      </g>
-                  </g>
-              </g>
-          </g>
-      </g>
-  </svg>
-
-   <div class="dropdown" data-pl-id="svg-down">
-    dropdown svg
-   </div>
-
-   <script src="../plunge.js"></script>
+    <script src="../plunge.js"></script>
   </body>
 </html>
