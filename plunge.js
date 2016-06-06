@@ -31,12 +31,15 @@
   var dropdown = {
     open: function(event) {
       document.querySelector('body').addEventListener('keyup', escapeExit, false);
+
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
       var dropElement = event.target.nextElementSibling;
+      var pos = event.target.dataset.plPosition || 'auto';
 
       if (event.target.dataset.plTrigger && !event.target.classList.contains('pl-trigger-active')) {
         event.stopPropagation();
+
         // close all the dropdowns that might be open still
         dropdown.closeAll();
 
@@ -46,10 +49,8 @@
         event.target.classList.add('pl-trigger-active');
         // find the element that needs to plunge based on the indentifier in the data-pl-trigger attribute
         findDropElement(event.target.dataset.plTrigger);
-        // check if the trigger has a position reference
-        if (event.target.dataset.plPosition) {
-          dropdown.position(dropElement);
-        }
+        // set the position
+        dropdown.position[pos]();
       }
       else if (root.classList.contains('pl-active') && clicked === null) {
         dropdown.closeAll();
@@ -58,37 +59,38 @@
         return;
       }
     },
-    position: function(el) {
-      var windowHeight = window.innerHeight;
-      var windowWidth = window.innerWidth;
+    position: {
+      'auto': function() {
+        var windowHeight = window.innerHeight;
+        var windowWidth = window.innerWidth;
+        var dropdown = document.querySelector('[data-pl-id=' + event.target.dataset.plTrigger + ']');
 
-      console.log(windowHeight, windowWidth);
+        var trigger = event.target.getBoundingClientRect();
+        // determine where in the screen the button is so we know if we should set it to left / right, top / bottom
+        var posX = (event.target.offsetLeft < (windowWidth / 2)) ? 'left' : 'right';
+        var posY = (event.target.offsetTop < (windowHeight / 2)) ? 'top' : 'bottom';
 
-      var trigger = event.target.getBoundingClientRect();
-      var dropdown = el.getBoundingClientRect();
+        console.log(posX, 'position X');
+        console.log(posY, 'position Y');
 
-      var triggerLeft = event.target.offsetLeft;
-      var triggerTop = event.target.offsetTop + event.target.clientHeight + 10;
-
-      console.log(trigger, 'trigger');
-      console.log(dropdown, 'dropdown');
-
-      // determine where in the screen the button is so we know if we should set it to left / right, top / bottom
-      var posX = (triggerLeft < (windowWidth / 2)) ? 'left' : 'right';
-      var posY = (triggerTop < (windowHeight / 2)) ? 'top' : 'bottom';
-
-      console.log(posX, 'position X');
-      console.log(posY, 'position Y');
-
-      if (posX == 'left') {
-        el.style.left = triggerLeft + 'px';
+        dropdown.style.posX = event.target.offsetLeft + "px";
+        dropdown.style.posY = event.target.offsetTop + "px";
+      },
+      'top': function() {
+        console.log('top'); 
+      },
+      'right': function() {
+        console.log('right'); 
+      },
+      'bottom': function() {
+        console.log('bottom'); 
+        // get position element
+        // get the bottom line of that element
+        // get dimensions of 
+      },
+      'left': function() {
+        console.log('left'); 
       }
-      else {
-        el.style.right = triggerLeft + 'px';
-      }
-
-      el.style.posX = triggerLeft + "px";
-      el.style.posY = triggerTop + "px";
     },
     content: function(event) {
       var posLeft = event.target.offsetLeft;
