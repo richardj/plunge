@@ -21,9 +21,16 @@
     var element = document.querySelectorAll('[data-pl-id="' + el + '"]');
     element[0].classList.add('pl-active');
   };
+
+  var escapeExit = function(event) {
+    if (event.which == '27') {
+      dropdown.closeAll();
+    }
+  };
   
   var dropdown = {
     open: function(event) {
+      document.querySelector('body').addEventListener('keyup', escapeExit, false);
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
       var dropElement = event.target.nextElementSibling;
@@ -55,23 +62,17 @@
       var windowHeight = window.innerHeight;
       var windowWidth = window.innerWidth;
 
+      console.log(windowHeight, windowWidth);
+
       var trigger = event.target.getBoundingClientRect();
       var dropdown = el.getBoundingClientRect();
 
       var triggerLeft = event.target.offsetLeft;
       var triggerTop = event.target.offsetTop + event.target.clientHeight + 10;
 
-      console.log(trigger, 'dropdown');
+      console.log(trigger, 'trigger');
       console.log(dropdown, 'dropdown');
 
-      /* 
-      console.log(windowHeight, 'window height');
-      console.log(windowWidth, 'window width');
-      console.log(dropdownHeight, 'dropdown height');
-      console.log(dropdownWidth, 'dropdown height');
-      console.log(triggerLeft, 'position left');
-      console.log(triggerTop, 'position top');
-      */
       // determine where in the screen the button is so we know if we should set it to left / right, top / bottom
       var posX = (triggerLeft < (windowWidth / 2)) ? 'left' : 'right';
       var posY = (triggerTop < (windowHeight / 2)) ? 'top' : 'bottom';
@@ -109,11 +110,12 @@
     hide: function(element) {
       element.classList.remove('pl-active');
       element.classList.remove('pl-trigger-active');
+      element.blur();
     },
 
     closeAll: function() {
       var elements = document.querySelectorAll('.dropdown, .pl-trigger-active');
-    
+       
       for (var i = 0; i < elements.length; i++) {
         dropdown.hide(elements[i]);
       }
