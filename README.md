@@ -19,9 +19,9 @@ Add ` data-pl-id="IDENTIFIER" ` to the dropdown element.
 
 ### Optional
 
-Position the dropdown, default is ` auto `.
+Position the dropdown, default is `auto`.
 
-' data-pl-position="auto | left | top | right | bottom" ` 
+`data-pl-position="auto | left | top | right | bottom"`
 
 When you need more distance between dropdown element and the trigger, you can use margin in CSS to push the dropdown away from the element.
 
