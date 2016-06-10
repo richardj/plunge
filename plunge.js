@@ -30,7 +30,6 @@
   
   var dropdown = {
     open: function(event) {
-      document.querySelector('body').addEventListener('keyup', escapeExit, false);
 
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
@@ -42,7 +41,8 @@
         event.stopPropagation();
         // close all the dropdowns that might be open still
         dropdown.closeAll();
-
+        // add the keyup event listener for the escape key
+        document.querySelector('body').addEventListener('keyup', escapeExit, false);
         // add the classes to the html element
         root.classList.add('pl-active');
         // add an active class to the trigger
@@ -50,7 +50,7 @@
         // find the element that needs to plunge based on the indentifier in the data-pl-trigger attribute
         findDropElement(event.target.dataset.plTrigger);
         // set the position
-        dropdown.position[pos](dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+        dropdown.position[pos](dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect(), event);
       }
       else if (root.classList.contains('pl-active') && clicked === null) {
         dropdown.closeAll();
@@ -60,41 +60,33 @@
       }
     },
     position: {
-      'auto': function() {
-        var windowHeight = window.innerHeight;
-        var windowWidth = window.innerWidth;
-        var dropdown = document.querySelector('[data-pl-id=' + event.target.dataset.plTrigger + ']');
+      'auto': function(dropdownEl, triggerRect, dropdownRect, event) {
+        var spaceBelow = window.innerHeight - (event.target.offsetTop + triggerRect.height);
 
-        var trigger = event.target.getBoundingClientRect();
-        // determine where in the screen the button is so we know if we should set it to left / right, top / bottom
-        var posX = (event.target.offsetLeft < (windowWidth / 2)) ? 'left' : 'right';
-        var posY = (event.target.offsetTop < (windowHeight / 2)) ? 'top' : 'bottom';
-
-        console.log(posX, 'position X');
-        console.log(posY, 'position Y');
-
-        dropdown.style.posX = event.target.offsetLeft + "px";
-        dropdown.style.posY = event.target.offsetTop + "px";
+        if (spaceBelow >= dropdownRect.height) {
+          dropdown.position.bottom(dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+        }
+        else {
+          dropdown.position.top(dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+        }
       },
-      'top': function(dropdown, triggerRect, dropdownRect) {
-
-        dropdown.style.top = (triggerRect.top - dropdownRect.height) + 'px';
-        dropdown.style.left = (triggerRect.left) + 'px';
-        dropdown.style.width = triggerRect.width + 'px';
+      'top': function(dropdownEl, triggerRect, dropdownRect, event) {
+        dropdownEl.style.top = (triggerRect.top - dropdownRect.height) + 'px';
+        dropdownEl.style.left = (triggerRect.left) + 'px';
+        dropdownEl.style.width = triggerRect.width + 'px';
       },
-      'right': function(dropdown,triggerRect, dropdownRect) {
-
-        dropdown.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
-        dropdown.style.left = (triggerRect.left + triggerRect.width) + 'px';
+      'right': function(dropdownEl,triggerRect, dropdownRect, event) {
+        dropdownEl.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
+        dropdownEl.style.left = (triggerRect.left + triggerRect.width) + 'px';
       },
-      'bottom': function(dropdown, triggerRect, dropdownRect) {
-        dropdown.style.top = (triggerRect.top + triggerRect.height) + 'px';
-        dropdown.style.left = (triggerRect.left) + 'px';
-        dropdown.style.width = triggerRect.width + 'px';
+      'bottom': function(dropdownEl, triggerRect, dropdownRect, event) {
+        dropdownEl.style.top = (triggerRect.top + triggerRect.height) + 'px';
+        dropdownEl.style.left = (triggerRect.left) + 'px';
+        dropdownEl.style.width = triggerRect.width + 'px';
       },
-      'left': function(dropdown, triggerRect, dropdownRect) {
-        dropdown.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
-        dropdown.style.left = (triggerRect.left - dropdownRect.width) + 'px';
+      'left': function(dropdownEl, triggerRect, dropdownRect, event) {
+        dropdownEl.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
+        dropdownEl.style.left = (triggerRect.left - dropdownRect.width) + 'px';
       }
     },
     content: function(event) {
@@ -127,6 +119,7 @@
         dropdown.hide(elements[i]);
       }
       document.documentElement.classList.remove('pl-active');
+      document.querySelector('body').removeEventListener('keyup', escapeExit, false);
     }
   };
   
