@@ -1,6 +1,6 @@
 {
   "name": "plunge",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Simple script for dropdowns and modals",
   "main": "plunge.js",
   "scripts": {
