@@ -1,6 +1,6 @@
 /*
  * Plunge.js
- * v0.2.0
+ * v0.2.2
  */
 
 ;(function() {
@@ -31,10 +31,8 @@
   
   var dropdown = {
     open: function(event) {
-
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
-      var dropElement = event.target.nextElementSibling;
       var dropdownEl = document.querySelector('[data-pl-id=' + event.target.dataset.plTrigger + ']');
       var pos = event.target.dataset.plPosition || 'auto';
 
@@ -90,19 +88,6 @@
         dropdownEl.style.left = (triggerRect.left - dropdownRect.width) + 'px';
       }
     },
-    content: function(event) {
-      var posLeft = event.target.offsetLeft;
-      var posTop = event.target.offsetTop + event.target.clientHeight + 10;
-
-      var el = document.createElement('div');
-      el.classList.add('dropdown');
-      el.innerHTML = '<h3>lorem ipsum</h3>';
-      el.style.top = posTop + "px";
-      el.style.left = posLeft + "px";
-    
-      document.body.insertBefore(el, document.body.childNodes[0]); 
-    },
-
     close: function(element) {
       element.parentNode.removeChild(element);  
     },
@@ -114,11 +99,8 @@
     },
 
     closeAll: function() {
-      var elements = document.querySelectorAll('.dropdown, .pl-trigger-active');
-       
-      for (var i = 0; i < elements.length; i++) {
-        dropdown.hide(elements[i]);
-      }
+      document.querySelectorAll('.dropdown, .pl-trigger-active').forEach(dropdown.hide);   
+
       document.documentElement.classList.remove('pl-active');
       document.querySelector('body').removeEventListener('keyup', escapeExit, false);
     }
