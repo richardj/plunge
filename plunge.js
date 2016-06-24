@@ -7,6 +7,9 @@
   'use strict';
 
   var assignHandlers = function() {
+    if (!document.querySelector('[data-pl-trigger]')) {
+      return; 
+    }
     document.querySelector('body').addEventListener('click', dropdown.open, false);
   };
 
