@@ -1,6 +1,6 @@
 /*
  * Plunge.js
- * v0.2.2
+ * v0.2.4
  */
 
 ;(function() {
@@ -34,6 +34,7 @@
   
   var dropdown = {
     open: function(event) {
+      event.preventDefault();
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
       var dropdownEl = document.querySelector('[data-pl-id=' + event.target.dataset.plTrigger + ']');
@@ -102,7 +103,7 @@
     },
 
     closeAll: function() {
-      document.querySelectorAll('.dropdown, .pl-trigger-active').forEach(dropdown.hide);   
+      [].forEach.call(document.querySelectorAll('.dropdown, .pl-trigger-active'), dropdown.hide);
 
       document.documentElement.classList.remove('pl-active');
       document.querySelector('body').removeEventListener('keyup', escapeExit, false);
