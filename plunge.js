@@ -1,6 +1,6 @@
 /*
  * Plunge.js
- * v0.2.4
+ * v0.2.5
  */
 
 ;(function() {
@@ -34,7 +34,6 @@
   
   var dropdown = {
     open: function(event) {
-      event.preventDefault();
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
       var dropdownEl = document.querySelector('[data-pl-id=' + event.target.dataset.plTrigger + ']');
