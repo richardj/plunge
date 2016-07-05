@@ -34,7 +34,6 @@
   
   var dropdown = {
     open: function(event) {
-      event.preventDefault();
       var root = document.documentElement;
       var clicked = findAncestor(event.target, 'dropdown');
       var dropdownEl = document.querySelector('[data-pl-id=' + event.target.dataset.plTrigger + ']');
