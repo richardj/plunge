@@ -28,3 +28,4 @@ When you need more distance between dropdown element and the trigger, you can us
 ## Known issues
 
 - When a parent stops propagation, the event will never reach the root, be aware of other scripts you use.
+- When the parent of the dropdown element has a transform applied, the positioning will be relative to that parent.
