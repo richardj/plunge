@@ -1,6 +1,6 @@
 /*
  * Plunge.js
- * v0.2.5
+ * v0.2.6
  */
 
 ;(function() {
@@ -52,6 +52,15 @@
         // find the element that needs to plunge based on the indentifier in the data-pl-trigger attribute
         findDropElement(event.target.dataset.plTrigger);
         // set the position
+
+        /*
+         * arguments:
+         * - Target Element
+         * - Dimensions of the trigger
+         * - Dimensions of the dropdown Element
+         * - event
+         */
+
         dropdown.position[pos](dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect(), event);
       }
       else if (root.classList.contains('pl-active') && clicked === null) {
@@ -75,7 +84,7 @@
       'top': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - dropdownRect.height) + 'px';
         dropdownEl.style.left = (triggerRect.left) + 'px';
-        dropdownEl.style.width = triggerRect.width + 'px';
+        //dropdownEl.style.width = triggerRect.width + 'px';
       },
       'right': function(dropdownEl,triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
@@ -84,7 +93,7 @@
       'bottom': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top + triggerRect.height) + 'px';
         dropdownEl.style.left = (triggerRect.left) + 'px';
-        dropdownEl.style.width = triggerRect.width + 'px';
+        //dropdownEl.style.width = triggerRect.width + 'px';
       },
       'left': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
