@@ -105,6 +105,7 @@
       'topRight': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - triggerRect.height) + 'px';
         dropdownEl.style.right = (window.innerWidth - triggerRect.left - triggerRect.width) + 'px';
+        dropdownEl.classList.add('top-right');
       },
       'right': function(dropdownEl,triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
@@ -117,6 +118,7 @@
       'bottomRight': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top + triggerRect.height) + 'px';
         dropdownEl.style.right = (window.innerWidth - triggerRect.left - triggerRect.width) + 'px';
+        dropdownEl.classList.add('bottom-right');
       },
       'left': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
@@ -136,7 +138,7 @@
     closeAll: function() {
       [].forEach.call(document.querySelectorAll('.dropdown, .pl-trigger-active'), dropdown.hide);
 
-      document.documentElement.classList.remove('pl-active');
+      document.documentElement.classList.remove('pl-active top-right bottom-right');
       document.querySelector('body').removeEventListener('keyup', escapeExit, false);
     }
   };
