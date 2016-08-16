@@ -73,18 +73,38 @@
     position: {
       'auto': function(dropdownEl, triggerRect, dropdownRect, event) {
         var spaceBelow = window.innerHeight - (event.target.offsetTop + triggerRect.height);
-
+        var spaceRight = window.innerWidth - triggerRect.left;
+        
+        // default, show on the bottom 
         if (spaceBelow >= dropdownRect.height) {
-          dropdown.position.bottom(dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+          // default align to the left
+          if (spaceRight >= dropdownRect.width) {
+            dropdown.position.bottom(dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+          }
+          // if not enough space, align to the right
+          else {
+            dropdown.position.bottomRight(dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+          }
         }
+        // else show on the top
         else {
-          dropdown.position.top(dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+          // default align to the left
+          if (spaceRight >= dropdownRect.width) {
+            dropdown.position.top(dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+          }
+          // if not enough space, align to the right
+          else {
+            dropdown.position.topRight(dropdownEl, event.target.getBoundingClientRect(), dropdownEl.getBoundingClientRect());
+          }
         }
       },
       'top': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - dropdownRect.height) + 'px';
         dropdownEl.style.left = (triggerRect.left) + 'px';
-        //dropdownEl.style.width = triggerRect.width + 'px';
+      },
+      'topRight': function(dropdownEl, triggerRect, dropdownRect, event) {
+        dropdownEl.style.top = (triggerRect.top - triggerRect.height) + 'px';
+        dropdownEl.style.right = (window.innerWidth - triggerRect.left - triggerRect.width) + 'px';
       },
       'right': function(dropdownEl,triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
@@ -93,7 +113,10 @@
       'bottom': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top + triggerRect.height) + 'px';
         dropdownEl.style.left = (triggerRect.left) + 'px';
-        //dropdownEl.style.width = triggerRect.width + 'px';
+      },
+      'bottomRight': function(dropdownEl, triggerRect, dropdownRect, event) {
+        dropdownEl.style.top = (triggerRect.top + triggerRect.height) + 'px';
+        dropdownEl.style.right = (window.innerWidth - triggerRect.left - triggerRect.width) + 'px';
       },
       'left': function(dropdownEl, triggerRect, dropdownRect, event) {
         dropdownEl.style.top = (triggerRect.top - (dropdownRect.height / 2) + (triggerRect.height / 2)) + 'px';
