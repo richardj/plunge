@@ -138,7 +138,7 @@
     closeAll: function() {
       [].forEach.call(document.querySelectorAll('.dropdown, .pl-trigger-active'), dropdown.hide);
 
-      document.documentElement.classList.remove('pl-active top-right bottom-right');
+      document.documentElement.classList.remove('pl-active', 'top-right', 'bottom-right');
       document.querySelector('body').removeEventListener('keyup', escapeExit, false);
     }
   };
