@@ -7,7 +7,16 @@
   <body>
     <div class="layout-wrapper">
       <h1>Plunge.js</h1>
-      <button data-pl-trigger="unique-identifier" data-pl-position="auto">open dropdown</button>
+
+
+      <div data-pl-trigger="unique-identifier">
+        <p>
+        <span><button>click</button></span>
+        </p>
+      </div>
+
+
+      <!--<button data-pl-trigger="unique-identifier" data-pl-position="auto">open dropdown</button>-->
 
       <div class="dropdown" data-pl-id="unique-identifier">
         Hello I'm a dropdown!
@@ -21,7 +30,7 @@
         dropdown 2
       </div>
 
-      <button data-pl-trigger="third-dropdown" data-pl-position="auto" style="position: absolute; bottom: 80px;">open dropdown 3</button>
+      <button data-pl-trigger="third-dropdown" data-pl-position="auto" style="position: absolute; bottom: 280px;">open dropdown 3</button>
 
       <div class="dropdown" data-pl-id="third-dropdown">
         dropdown 3
@@ -49,33 +58,71 @@
 
       <button data-pl-trigger="right-dropdown" data-pl-position="right">open right</button>
 
-      <div class="dropdown" data-pl-id="right-dropdown">
+      <div class="dropdown" data-pl-id="right-dropdown" style="width: 300px; height: 30px;">
         dropdown right
       </div>
 
       <hr />
 
-      <a href="#" class="projects" load-project-list>
-        <span data-pl-trigger="project-list">Text link</span>
-      </a>
-
-      <div class="dropdown" data-pl-id="project-list">
-        <a href="https://google.com">title</a>
-        <a href="https://google.com">title</a>
-        <a href="https://google.com">title</a>
-        <a href="https://google.com">title</a>
-        <a href="https://google.com">title</a>
-        <a href="https://google.com">title</a>
-      </div>
       
       <button data-pl-trigger="right-dropdown" style="position: fixed; bottom: 40px; left: 25px;">open</button>
 
       <div class="dropdown" data-pl-id="right-dropdown">
         dropdown right
       </div>
+      
 
+      <div class="sidebar">
+        Sidebar
+        <p class="subheader">
+          <a href="#" class="projects" load-project-list>
+            <span data-pl-trigger="project-list">Text link</span>
+          </a>
+        </p>
+
+
+        <hr />
+
+
+        <a href="#" class="user" data-pl-trigger="user-menu">
+          <span class="username">FF0000</span>
+          <span class="icon icon-chevron-down small"></span>
+        </a>
+
+        <p data-pl-trigger="child-trigger-list">
+          <span style="border: 1px solid red">
+            <span>click</span>
+          </span>
+        </p>
+        
+        <span style="position: absolute; right: 20px; top: 20px; cursor: pointer;" data-pl-trigger="user-menu" data-pl-position="bottomRight">&#8230;</span>
+
+        <span style="position: absolute; right: 80px; top: 20px; cursor: pointer;" data-pl-trigger="user-menu" data-pl-position="auto">&#8230;</span>
+      </div>
     </div>
 
+
+    <div class="dropdown" data-pl-id="child-trigger-list" style="width: 150px;">
+      Triggered by child
+    </div>
+  
+
+    <div class="dropdown" data-pl-id="user-menu" style="width: 150px;">
+      Triggered by child
+    </div>
+
+    <div class="dropdown" data-pl-id="project-list" data-pl-width="100px">
+      <h1 style="border: 1px solid red;"> hello </h1>
+      hello
+      <div style="width: 250px; border: 1px solid red;">
+      <a href="https://google.com">title</a>
+      <a href="https://google.com">title</a>
+      <a href="https://google.com">title</a>
+      <a href="https://google.com">title</a>
+      <a href="https://google.com">title</a>
+      <a href="https://google.com">title</a>
+      </div>
+    </div>
     <script src="../plunge.js"></script>
   </body>
 </html>
