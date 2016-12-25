@@ -1,6 +1,6 @@
 /*
  * Plunge.js
- * v0.2.7
+ * v0.2.11
  */
 
 ;(function () {
