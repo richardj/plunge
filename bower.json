@@ -3,7 +3,7 @@
   "main": "plunge.js",
   "homepage": "https://github.com/richardj/plunge",
   "authors": [
-    "Richard Japenga <treurmars@gmail.com>"
+    "Richard Japenga"
   ],
   "description": "Simple script for dropdowns and modals",
   "keywords": [
